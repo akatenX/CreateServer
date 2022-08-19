@@ -302,19 +302,390 @@ if /i {%ANSWER%}=={4} (EXIT)
   echo "░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═════╝░╚═╝░╚════╝░╚═╝░░╚══╝"
   echo "-----------------------------------------------------"
   echo ***********************
-  echo 1. 1.17
-  echo 2. 1.18
-  echo 3. 1.19
-  echo 4. 戻る
+  echo 1. 1.8
+  echo 2. 1.9
+  echo 3. 1.10
+  echo 4. 1.11
+  echo 5. 1.12
+  echo 6. 1.13
+  echo 7. 1.14
+  echo 8. 1.15
+  echo 9. 1.16
+  echo 10. 1.17
+  echo 11. 1.18
+  echo 12. 1.19
+  echo 13. 戻る
   echo ***********************
-  SET /P ANSWER="番号を入力してください。(1,2,3,4)？ "
-  
-  if /i {%ANSWER%}=={1} (goto :num)
+  SET /P ANSWER="番号を入力してください。(1~13)？ "
+
+
+
+
+  if /i {%ANSWER%}=={1} (goto :num1)
   if /i {%ANSWER%}=={2} (goto :num2)
-  if /i {%ANSWER%}=={3} (goto :num3) 
-  if /i {%ANSWER%}=={4} (goto :run)
- 
+  if /i {%ANSWER%}=={3} (goto :num3)
+  if /i {%ANSWER%}=={4} (goto :num4)
+  if /i {%ANSWER%}=={5} (goto :num5)
+  if /i {%ANSWER%}=={6} (goto :num6)
+  if /i {%ANSWER%}=={7} (goto :num7)
+  if /i {%ANSWER%}=={8} (goto :num8)
+  if /i {%ANSWER%}=={9} (goto :num9)
+  if /i {%ANSWER%}=={10} (goto :num10)
+  if /i {%ANSWER%}=={11} (goto :num11)
+  if /i {%ANSWER%}=={12} (goto :num12) 
+  if /i {%ANSWER%}=={13} (goto :run)
+
+
+
+
+
+
   :num1
+    curl -OL https://api.papermc.io/v2/projects/paper/versions/1.8.8/builds/445/downloads/paper-1.8.8-445.jar
+    ren paper-1.8.8-445.jar 1.8.jar
+    java -Xms1024M -Xmx1024M -jar 1.8.jar nogui
+    @echo off
+    chcp 65001
+    SET /P ANSWER="eulaに同意しますか (Y/N)？"
+    
+    if /i {%ANSWER%}=={y} (goto :yes)
+    if /i {%ANSWER%}=={yes} (goto :yes)
+    
+    EXIT
+    
+    
+    :yes
+    @echo on
+    ren eula.txt eul.txt
+    set BEFORE_STRING=false
+    set AFTER_STRING=true
+    
+    set INPUT_FILE=eul.txt
+    set OUTPUT_FILE=eula.txt
+    
+    setlocal enabledelayedexpansion
+    for /f "delims=" %%a in (%INPUT_FILE%) do (
+    set line=%%a
+    echo !line:%BEFORE_STRING%=%AFTER_STRING%!>>%OUTPUT_FILE%
+    )
+    del /q eul.txt
+    echo java -Xms1024M -Xmx1024M -jar 1.8.jar nogui > serverstart.bat
+    java -Xms1024M -Xmx1024M -jar 1.8.jar nogui
+    pause
+    exit
+
+
+
+
+  :num2
+    curl -OL https://api.papermc.io/v2/projects/paper/versions/1.9.4/builds/775/downloads/paper-1.9.4-775.jar
+    ren paper-1.9.4-775.jar 1.9.jar
+    java -Xms1024M -Xmx1024M -jar 1.9.jar nogui
+    @echo off
+    chcp 65001
+    SET /P ANSWER="eulaに同意しますか (Y/N)？"
+    
+    if /i {%ANSWER%}=={y} (goto :yes)
+    if /i {%ANSWER%}=={yes} (goto :yes)
+    
+    EXIT
+    
+    
+    :yes
+    @echo on
+    ren eula.txt eul.txt
+    set BEFORE_STRING=false
+    set AFTER_STRING=true
+    
+    set INPUT_FILE=eul.txt
+    set OUTPUT_FILE=eula.txt
+    
+    setlocal enabledelayedexpansion
+    for /f "delims=" %%a in (%INPUT_FILE%) do (
+    set line=%%a
+    echo !line:%BEFORE_STRING%=%AFTER_STRING%!>>%OUTPUT_FILE%
+    )
+    del /q eul.txt
+    echo java -Xms1024M -Xmx1024M -jar 1.9.jar nogui > serverstart.bat
+    java -Xms1024M -Xmx1024M -jar 1.9.jar nogui
+    pause
+    exit
+
+
+
+
+
+  :num3
+    curl -OL https://api.papermc.io/v2/projects/paper/versions/1.10.2/builds/918/downloads/paper-1.10.2-918.jar
+    ren paper-1.10.2-918.jar 1.10.jar
+    java -Xms1024M -Xmx1024M -jar 1.10.jar nogui
+    @echo off
+    chcp 65001
+    SET /P ANSWER="eulaに同意しますか (Y/N)？"
+    
+    if /i {%ANSWER%}=={y} (goto :yes)
+    if /i {%ANSWER%}=={yes} (goto :yes)
+    
+    EXIT
+    
+    
+    :yes
+    @echo on
+    ren eula.txt eul.txt
+    set BEFORE_STRING=false
+    set AFTER_STRING=true
+    
+    set INPUT_FILE=eul.txt
+    set OUTPUT_FILE=eula.txt
+    
+    setlocal enabledelayedexpansion
+    for /f "delims=" %%a in (%INPUT_FILE%) do (
+    set line=%%a
+    echo !line:%BEFORE_STRING%=%AFTER_STRING%!>>%OUTPUT_FILE%
+    )
+    del /q eul.txt
+    echo java -Xms1024M -Xmx1024M -jar 1.10.jar nogui > serverstart.bat
+    java -Xms1024M -Xmx1024M -jar 1.10.jar nogui
+    pause
+    exit
+
+
+
+
+
+  :num4
+    curl -OL https://api.papermc.io/v2/projects/paper/versions/1.11.2/builds/1106/downloads/paper-1.11.2-1106.jar
+    ren paper-1.11.2-1106.jar 1.11.jar
+    java -Xms1024M -Xmx1024M -jar 1.11.jar nogui
+    @echo off
+    chcp 65001
+    SET /P ANSWER="eulaに同意しますか (Y/N)？"
+    
+    if /i {%ANSWER%}=={y} (goto :yes)
+    if /i {%ANSWER%}=={yes} (goto :yes)
+    
+    EXIT
+    
+    
+    :yes
+    @echo on
+    ren eula.txt eul.txt
+    set BEFORE_STRING=false
+    set AFTER_STRING=true
+    
+    set INPUT_FILE=eul.txt
+    set OUTPUT_FILE=eula.txt
+    
+    setlocal enabledelayedexpansion
+    for /f "delims=" %%a in (%INPUT_FILE%) do (
+    set line=%%a
+    echo !line:%BEFORE_STRING%=%AFTER_STRING%!>>%OUTPUT_FILE%
+    )
+    del /q eul.txt
+    echo java -Xms1024M -Xmx1024M -jar 1.11.jar nogui > serverstart.bat
+    java -Xms1024M -Xmx1024M -jar 1.11.jar nogui
+    pause
+    exit
+
+
+
+
+
+  :num5
+    curl -OL https://api.papermc.io/v2/projects/paper/versions/1.12.2/builds/1620/downloads/paper-1.12.2-1620.jar
+    ren paper-1.12.2-1620.jar 1.12.jar
+    java -Xms1024M -Xmx1024M -jar 1.12.jar nogui
+    @echo off
+    chcp 65001
+    SET /P ANSWER="eulaに同意しますか (Y/N)？"
+    
+    if /i {%ANSWER%}=={y} (goto :yes)
+    if /i {%ANSWER%}=={yes} (goto :yes)
+    
+    EXIT
+    
+    
+    :yes
+    @echo on
+    ren eula.txt eul.txt
+    set BEFORE_STRING=false
+    set AFTER_STRING=true
+    
+    set INPUT_FILE=eul.txt
+    set OUTPUT_FILE=eula.txt
+    
+    setlocal enabledelayedexpansion
+    for /f "delims=" %%a in (%INPUT_FILE%) do (
+    set line=%%a
+    echo !line:%BEFORE_STRING%=%AFTER_STRING%!>>%OUTPUT_FILE%
+    )
+    del /q eul.txt
+    echo java -Xms1024M -Xmx1024M -jar 1.12.jar nogui > serverstart.bat
+    java -Xms1024M -Xmx1024M -jar 1.12.jar nogui
+    pause
+    exit
+
+
+
+
+
+
+
+  :num6
+    curl -OL https://api.papermc.io/v2/projects/paper/versions/1.13.2/builds/657/downloads/paper-1.13.2-657.jar
+    ren paper-1.13.2-657.jar 1.13.jar
+    java -Xms1024M -Xmx1024M -jar 1.13.jar nogui
+    @echo off
+    chcp 65001
+    SET /P ANSWER="eulaに同意しますか (Y/N)？"
+    
+    if /i {%ANSWER%}=={y} (goto :yes)
+    if /i {%ANSWER%}=={yes} (goto :yes)
+    
+    EXIT
+    
+    
+    :yes
+    @echo on
+    ren eula.txt eul.txt
+    set BEFORE_STRING=false
+    set AFTER_STRING=true
+    
+    set INPUT_FILE=eul.txt
+    set OUTPUT_FILE=eula.txt
+    
+    setlocal enabledelayedexpansion
+    for /f "delims=" %%a in (%INPUT_FILE%) do (
+    set line=%%a
+    echo !line:%BEFORE_STRING%=%AFTER_STRING%!>>%OUTPUT_FILE%
+    )
+    del /q eul.txt
+    echo java -Xms1024M -Xmx1024M -jar 1.13.jar nogui > serverstart.bat
+    java -Xms1024M -Xmx1024M -jar 1.13.jar nogui
+    pause
+    exit
+
+
+
+
+
+
+  :num7
+    curl -OL https://api.papermc.io/v2/projects/paper/versions/1.14.4/builds/245/downloads/paper-1.14.4-245.jar
+    ren paper-1.14.4-245.jar 1.14.jar
+    java -Xms1024M -Xmx1024M -jar 1.14.jar nogui
+    @echo off
+    chcp 65001
+    SET /P ANSWER="eulaに同意しますか (Y/N)？"
+    
+    if /i {%ANSWER%}=={y} (goto :yes)
+    if /i {%ANSWER%}=={yes} (goto :yes)
+    
+    EXIT
+    
+    
+    :yes
+    @echo on
+    ren eula.txt eul.txt
+    set BEFORE_STRING=false
+    set AFTER_STRING=true
+    
+    set INPUT_FILE=eul.txt
+    set OUTPUT_FILE=eula.txt
+    
+    setlocal enabledelayedexpansion
+    for /f "delims=" %%a in (%INPUT_FILE%) do (
+    set line=%%a
+    echo !line:%BEFORE_STRING%=%AFTER_STRING%!>>%OUTPUT_FILE%
+    )
+    del /q eul.txt
+    echo java -Xms1024M -Xmx1024M -jar 1.14.jar nogui > serverstart.bat
+    java -Xms1024M -Xmx1024M -jar 1.14.jar nogui
+    pause
+    exit
+
+
+
+
+
+
+  :num8
+    curl -OL https://api.papermc.io/v2/projects/paper/versions/1.15.2/builds/393/downloads/paper-1.15.2-393.jar
+    ren paper-1.15.2-393.jar 1.15.jar
+    java -Xms1024M -Xmx1024M -jar 1.15.jar nogui
+    @echo off
+    chcp 65001
+    SET /P ANSWER="eulaに同意しますか (Y/N)？"
+    
+    if /i {%ANSWER%}=={y} (goto :yes)
+    if /i {%ANSWER%}=={yes} (goto :yes)
+    
+    EXIT
+    
+    
+    :yes
+    @echo on
+    ren eula.txt eul.txt
+    set BEFORE_STRING=false
+    set AFTER_STRING=true
+    
+    set INPUT_FILE=eul.txt
+    set OUTPUT_FILE=eula.txt
+    
+    setlocal enabledelayedexpansion
+    for /f "delims=" %%a in (%INPUT_FILE%) do (
+    set line=%%a
+    echo !line:%BEFORE_STRING%=%AFTER_STRING%!>>%OUTPUT_FILE%
+    )
+    del /q eul.txt
+    echo java -Xms1024M -Xmx1024M -jar 1.15.jar nogui > serverstart.bat
+    java -Xms1024M -Xmx1024M -jar 1.15.jar nogui
+    pause
+    exit
+
+
+
+
+
+
+  :num9
+    curl -OL https://api.papermc.io/v2/projects/paper/versions/1.16.5/builds/794/downloads/paper-1.16.5-794.jar
+    ren paper-1.16.5-794.jar 1.16.jar
+    java -Xms1024M -Xmx1024M -jar 1.16.jar nogui
+    @echo off
+    chcp 65001
+    SET /P ANSWER="eulaに同意しますか (Y/N)？"
+    
+    if /i {%ANSWER%}=={y} (goto :yes)
+    if /i {%ANSWER%}=={yes} (goto :yes)
+    
+    EXIT
+    
+    
+    :yes
+    @echo on
+    ren eula.txt eul.txt
+    set BEFORE_STRING=false
+    set AFTER_STRING=true
+    
+    set INPUT_FILE=eul.txt
+    set OUTPUT_FILE=eula.txt
+    
+    setlocal enabledelayedexpansion
+    for /f "delims=" %%a in (%INPUT_FILE%) do (
+    set line=%%a
+    echo !line:%BEFORE_STRING%=%AFTER_STRING%!>>%OUTPUT_FILE%
+    )
+    del /q eul.txt
+    echo java -Xms1024M -Xmx1024M -jar 1.16.jar nogui > serverstart.bat
+    java -Xms1024M -Xmx1024M -jar 1.16.jar nogui
+    pause
+    exit
+
+
+
+
+  :num10
     curl -OL https://api.papermc.io/v2/projects/paper/versions/1.17.1/builds/411/downloads/paper-1.17.1-411.jar
     ren paper-1.17.1-411.jar 1.17.jar
     java -Xms1024M -Xmx1024M -jar 1.17.jar nogui
@@ -350,7 +721,7 @@ if /i {%ANSWER%}=={4} (EXIT)
 
 
 
-  :num2
+  :num11
     curl -OL https://api.papermc.io/v2/projects/paper/versions/1.18.2/builds/386/downloads/paper-1.18.2-386.jar
     ren paper-1.18.2-386.jar 1.18.jar
     java -Xms1024M -Xmx1024M -jar 1.18.jar nogui
@@ -386,7 +757,7 @@ if /i {%ANSWER%}=={4} (EXIT)
 
 
 
-  :num3
+  :num12
     curl -OL https://api.papermc.io/v2/projects/paper/versions/1.19/builds/31/downloads/paper-1.19-31.jar
     ren paper-1.19-31.jar 1.19.jar
     java -Xms1024M -Xmx1024M -jar 1.19.jar nogui
