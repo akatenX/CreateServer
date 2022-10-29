@@ -33,20 +33,71 @@ if /i {%ANSWER%}=={4} (EXIT)
   echo "░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═════╝░╚═╝░╚════╝░╚═╝░░╚══╝"
   echo "-----------------------------------------------------"
   echo ***********************
-  echo 1. 1.17
-  echo 2. 1.18
-  echo 3. 1.19
-  echo 4. 戻る
+  echo 1. 1.8
+  echo 2. 1.9
+  echo 3. 1.10
+  echo 4. 1.11
+  echo 5. 1.12
+  echo 6. 1.13
+  echo 7. 1.14
+  echo 8. 1.15
+  echo 9. 1.16
+  echo 10. 1.17
+  echo 11. 1.18
+  echo 12. 1.19
+  echo 13. 戻る
   echo ***********************
-  SET /P ANSWER="番号を入力してください。(1,2,3,4)？ "
+  SET /P ANSWER="番号を入力してください。(1~13)？ "
   
   if /i {%ANSWER%}=={1} (goto :n1)
   if /i {%ANSWER%}=={2} (goto :n2)
   if /i {%ANSWER%}=={3} (goto :n3)
-  if /i {%ANSWER%}=={4} (goto :run)
+  if /i {%ANSWER%}=={4} (goto :n4)
+  if /i {%ANSWER%}=={5} (goto :n5)
+  if /i {%ANSWER%}=={6} (goto :n6)
+  if /i {%ANSWER%}=={7} (goto :n7)
+  if /i {%ANSWER%}=={8} (goto :n8)
+  if /i {%ANSWER%}=={9} (goto :n9)
+  if /i {%ANSWER%}=={10} (goto :n10)
+  if /i {%ANSWER%}=={11} (goto :n11)
+  if /i {%ANSWER%}=={12} (goto :n12)
+  if /i {%ANSWER%}=={13} (goto :run)
   
 
+
+
+
+
+
   :n1
+    call:va "https://launcher.mojang.com/v1/objects/b58b2ceb36e01bcd8dbf49c8fb66c55a9f0676cd/server.jar" "1.8"
+
+  :n2
+    call:va "https://launcher.mojang.com/v1/objects/edbb7b1758af33d365bf835eb9d13de005b1e274/server.jar" "1.9"
+
+  :n3
+    call:va "https://launcher.mojang.com/v1/objects/3d501b23df53c548254f5e3f66492d178a48db63/server.jar" "1.10"
+
+  :n4
+    call:va "https://launcher.mojang.com/v1/objects/f00c294a1576e03fddcac777c3cf4c7d404c4ba4/server.jar" "1.11"
+
+  :n5
+    call:va "https://launcher.mojang.com/v1/objects/886945bfb2b978778c3a0288fd7fab09d315b25f/server.jar" "1.12"
+
+  :n6
+    call:va "https://launcher.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar" "1.13"
+
+  :n7
+    call:va "https://launcher.mojang.com/v1/objects/3dc3d84a581f14691199cf6831b71ed1296a9fdf/server.jar" "1.14"
+
+  :n8
+    call:va "https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar" "1.15"
+
+  :n9
+    call:va "https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar" "1.16"
+
+
+  :n10
     curl -OL https://launcher.mojang.com/v1/objects/dd9ca1bdc855535cd7ce0565f02285ad4d6d1ae5/server.jar
     ren server.jar 1.17.jar
     java -Xms1024M -Xmx1024M -jar 1.17.jar nogui
@@ -81,7 +132,7 @@ if /i {%ANSWER%}=={4} (EXIT)
     exit
 
 
-  :n2
+  :n11
     curl -OL https://launcher.mojang.com/v1/objects/2f52c69c90d63c024548ae5c5438ff3156ece6c2/server.jar
     ren server.jar 1.18.jar
     java -Xms1024M -Xmx1024M -jar 1.18.jar nogui
@@ -117,7 +168,7 @@ if /i {%ANSWER%}=={4} (EXIT)
     
     
     
-  :n3
+  :n12
     curl -OL https://piston-data.mojang.com/v1/objects/93649d39350077f998296138964e4591d4571140/server.jar
     ren server.jar 1.19.jar
     java -Xms1024M -Xmx1024M -jar 1.19.jar nogui
@@ -1164,5 +1215,49 @@ if /i {%ANSWER%}=={4} (EXIT)
     del /q eul.txt
     echo java -Xms1024M -Xmx1024M -jar 1.19.jar nogui > serverstart.bat
     java -Xms1024M -Xmx1024M -jar 1.19.jar nogui
+    pause
+    exit
+    
+    
+    
+    
+    
+
+
+
+
+
+
+  :va
+    curl -OL %~1
+    ren server.jar %~2.jar
+    java -Xms1024M -Xmx1024M -jar %~2.jar nogui
+    @echo off
+    chcp 65001
+    SET /P ANSWER="eulaに同意しますか (Y/N)？"
+    
+    if /i {%ANSWER%}=={y} (goto :yes)
+    if /i {%ANSWER%}=={yes} (goto :yes)
+    
+    EXIT
+    
+    
+    :yes
+    @echo on
+    ren eula.txt eul.txt
+    set BEFORE_STRING=false
+    set AFTER_STRING=true
+    
+    set INPUT_FILE=eul.txt
+    set OUTPUT_FILE=eula.txt
+    
+    setlocal enabledelayedexpansion
+    for /f "delims=" %%a in (%INPUT_FILE%) do (
+    set line=%%a
+    echo !line:%BEFORE_STRING%=%AFTER_STRING%!>>%OUTPUT_FILE%
+    )
+    del /q eul.txt
+    echo java -Xms1024M -Xmx1024M -jar %~2.jar nogui > serverstart.bat
+    java -Xms1024M -Xmx1024M -jar %~2.jar nogui
     pause
     exit
