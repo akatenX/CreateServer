@@ -1,5 +1,5 @@
-chcp 65001
 @echo off
+chcp 65001
 
 :run
 echo "-------------------------------------------------"
@@ -14,14 +14,16 @@ echo ***********************
 echo 1. Vanilla
 echo 2. Spigot
 echo 3. Paper
-echo 4. Exit
+echo 4. Plugin-Install 
+echo 5. Exit
 echo ***********************
 SET /P ANSWER="番号を入力してください。(1,2,3,4)？"
 
 if /i {%ANSWER%}=={1} (goto :1)
 if /i {%ANSWER%}=={2} (goto :2)
 if /i {%ANSWER%}=={3} (goto :3)
-if /i {%ANSWER%}=={4} (EXIT)
+if /i {%ANSWER%}=={4} (goto :plugin)
+if /i {%ANSWER%}=={5} (EXIT)
 
 goto :run
 
@@ -372,3 +374,119 @@ goto :run
     java -Xms1024M -Xmx1024M -jar %~3.jar nogui
     pause
     exit
+
+:plugin
+  rem setlocal enabledelayedexpansion
+  if "%pl%" == "" (set /p pl="Pluginsの場所を入力してください")
+  if exist "%pl%" (
+    goto :plg
+  ) else (
+    echo フォルダが存在しません。
+    set pl=
+    SET /P an="Pluginsを検索します。よろしいですか (Y/N)？"
+  )
+    if /i {%an%}=={y} (goto :pyes)
+    if /i {%an%}=={yes} (goto :pyes)
+    if /i {%an%}=={n} (goto :plugin)
+    if /i {%an%}=={no} (goto :plugin)
+    goto :plugin
+  :pyes
+    cd C:\
+    dir /b /s /ad plugins
+    cd %~dp0
+    goto :plugin
+  
+  :plg
+    echo "------------------------------------------------------"
+    echo "██████╗░██╗░░░░░██╗░░░██╗░██████╗░██╗███╗░░██╗░██████╗"
+    echo "██╔══██╗██║░░░░░██║░░░██║██╔════╝░██║████╗░██║██╔════╝"
+    echo "██████╔╝██║░░░░░██║░░░██║██║░░██╗░██║██╔██╗██║╚█████╗░"
+    echo "██╔═══╝░██║░░░░░██║░░░██║██║░░╚██╗██║██║╚████║░╚═══██╗"
+    echo "██║░░░░░███████╗╚██████╔╝╚██████╔╝██║██║░╚███║██████╔╝"
+    echo "╚═╝░░░░░╚══════╝░╚═════╝░░╚═════╝░╚═╝╚═╝░░╚══╝╚═════╝░"
+    echo "------------------------------------------------------"
+    echo ***********************
+    echo 1. Geyser + FloodGate
+    echo 2. CoreProtect
+    echo 3. WorldEdit
+    echo 4. OpenInv
+    echo 5. LuckPerms
+    echo 6. PluginManager
+    echo 7. WorldGuard
+    echo 8. Multiverse-Core + Multiverse-Portals
+    echo 9. ViaVersion + ViaBackwards + ViaRewind
+    echo 10. LunaChat
+    echo 11. Exit
+    echo ***********************
+    SET /P ANSWER="番号を入力してください。(1,2,3,4)？"
+    
+    if /i {%ANSWER%}=={1} (goto :p1)
+    if /i {%ANSWER%}=={2} (goto :p2)
+    if /i {%ANSWER%}=={3} (goto :p3)
+    if /i {%ANSWER%}=={4} (goto :p4)
+    if /i {%ANSWER%}=={5} (goto :p5)
+    if /i {%ANSWER%}=={6} (goto :p6)
+    if /i {%ANSWER%}=={7} (goto :p7)
+    if /i {%ANSWER%}=={8} (goto :p8)
+    if /i {%ANSWER%}=={9} (goto :p9)
+    if /i {%ANSWER%}=={10} (goto :p10)
+    if /i {%ANSWER%}=={11} (EXIT)
+
+:p1
+  curl -o Geyser.jar -L "https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/build/libs/Geyser-Spigot.jar"
+  curl -o FloodGate.jar -L "https://ci.opencollab.dev/job/GeyserMC/job/Floodgate/job/master/lastSuccessfulBuild/artifact/spigot/build/libs/floodgate-spigot.jar"
+  move Geyser.jar "%pl%"
+  move FloodGate.jar "%pl%"
+  echo インストールしました。
+  goto :plugin
+:p2
+  curl -o CoreProtect.jar -L "https://www.spigotmc.org/resources/coreprotect.8631/download?version=446084"
+  move CoreProtect.jar "%pl%"
+  echo インストールしました。
+  goto :plugin
+:p3
+  curl -o WorldEdit.jar -L "https://dev.bukkit.org/projects/worldedit/files/latest"
+  move WorldEdit.jar "%pl%"
+  echo インストールしました。
+  goto :plugin
+:p4
+  curl -o OpenInv.jar -L "https://dev.bukkit.org/projects/openinv/files/latest"
+  move OpenInv.jar "%pl%"
+  echo インストールしました。
+  goto :plugin
+:p5
+  curl -o LuckPerms.jar -L "https://download.luckperms.net/1460/bukkit/loader/LuckPerms-Bukkit-5.4.52.jar"
+  move LuckPerms.jar "%pl%"
+  echo インストールしました。
+  goto :plugin
+:p6
+  curl -o PluginManager.jar -L "https://www.spigotmc.org/resources/pluginmanager.69061/download?version=470254"
+  move PluginManager.jar "%pl%"
+  echo インストールしました。
+  goto :plugin
+:p7
+  curl -o WorldGuard.jar -L "https://dev.bukkit.org/projects/worldguard/files/latest"
+  move WorldGuard.jar "%pl%"
+  echo インストールしました。
+  goto :plugin
+:p8
+  curl -o Multiverse-Core.jar -L "https://dev.bukkit.org/projects/multiverse-core/files/latest"
+  curl -o Multiverse-Portals.jar -L "https://dev.bukkit.org/projects/multiverse-portals/files/latest"
+  move Multiverse-Core.jar "%pl%"
+  move Multiverse-Portals "%pl%"
+  echo インストールしました。
+  goto :plugin
+:p9
+  curl -o ViaVersion.jar -L "https://www.spigotmc.org/resources/viaversion.19254/download?version=466457"
+  curl -o ViaBackwards.jar -L "https://www.spigotmc.org/resources/viabackwards.27448/download?version=466459"
+  curl -o ViaRewind.jar -L "https://www.spigotmc.org/resources/viarewind.52109/download?version=430131"
+  move ViaVersion.jar "%pl%"
+  move ViaBackwards.jar "%pl%"
+  move ViaRewind.jar "%pl%"
+  echo インストールしました。
+  goto :plugin
+:p10
+  curl -o LunaChat.jar -L "https://www.spigotmc.org/resources/lunachat.82293/download?version=359121"
+  move LunaChat.jar "%pl%"
+  echo インストールしました。
+  goto :plugin
