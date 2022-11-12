@@ -343,7 +343,7 @@ goto :run
   
   :pa
     curl -OL %~1
-    ren %~2.jar 1.8.jar
+    ren %~2.jar %~3.jar
     java -Xms1024M -Xmx1024M -jar %~3.jar nogui
     @echo off
     chcp 65001
